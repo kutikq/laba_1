@@ -7,7 +7,7 @@ class Event:
         self.name = name  # Название мероприятия
         self.date_time = date_time  # Дата и время проведения
         self.venue = venue  # Место проведения (объект Venue)
-        self.tickets: List['Ticket'] = []  # Список всех билетов на мероприятие
+
 
 # 2. Место проведения
 class Venue:
@@ -67,6 +67,9 @@ class Order:
         self.user = user  
         self.tickets = tickets
         self.is_paid = False 
+    
+    def calculate_total_price(self) -> float:
+        return sum(ticket.category.price for ticket in self.tickets)
 
     def apply_discount(self, discount: 'Discount'):
         self.total_price -= discount.apply(self.total_price)  # Применение скидки к общему заказу
@@ -100,15 +103,30 @@ class Discount:
 
 #10. Отзыв
 class Feedback:
-    def __init__(self, user: User, event: Event, rating: int, comment: Optional[str] = None):
-        self.user = user 
-        self.event = event  
-        self.rating = rating  
-        if rating < 1 or rating > 5:
-            raise ValueError("Rating must be between 1 and 5.")
-        self.comment = comment  # Текст отзыва (опционально)
+    def __init__(self, user: User, event: Event):
+        self.user = user
+        self.event = event
+        self.rating = None
+        self.comment = None
+
+    def set_rating(self):
+        while True:
+            try:
+                grade = input("Введите рейтинг (от 1 до 5): ")
+                gradeInt = int(grade)
+                if 1 <= gradeInt <= 5:
+                    self.rating = gradeInt
+                    break
+                else:
+                    print("\nРейтинг должен быть от 1 до 5!")
+            except ValueError:
+                print("\nОшибка: введено не число. Попробуйте снова.")
+
+    def set_comment(self):
+        self.comment = input("Введите комментарий (необязательно): ")
 
     def __str__(self):
         return f"Feedback by {self.user.name} for {self.event.name} - Rating: {self.rating}, Comment: {self.comment or 'No comment'}"
+
 
 
