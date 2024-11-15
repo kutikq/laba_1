@@ -1,0 +1,38 @@
+{
+    "events": [
+        {
+            "name": "Concert",
+            "date_time": "2024-12-31T20:00:00",
+            "venue": {
+                "name": "Concert Hall",
+                "address": "123 Main St",
+                "capacity": 100,
+                "seats": [
+                    {
+                        "row": 1,
+                        "number": 1,
+                        "is_available": true
+                    },
+                    {
+                        "row": 1,
+                        "number": 2,
+                        "is_available": false
+                    }
+                ]
+            },
+            "tickets": [
+                {
+                    "category": {
+                        "name": "VIP",
+                        "price": 100.0
+                    },
+                    "seat": {
+                        "row": 1,
+                        "number": 1
+                    },
+                    "is_booked": false
+                }
+            ]
+        }
+    ]
+}
