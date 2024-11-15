@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<events><event><name>Concert</name><date_time>2024-12-31T20:00:00</date_time><venue><name>Concert Hall</name><address>123 Main St</address><capacity>100</capacity><seats><seat><row>1</row><number>1</number><is_available>true</is_available></seat><seat><row>1</row><number>2</number><is_available>false</is_available></seat></seats></venue><tickets><ticket><category><name>VIP</name><price>100.0</price></category><seat><row>1</row><number>1</number></seat><is_booked>false</is_booked></ticket></tickets></event></events>
