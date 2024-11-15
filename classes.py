@@ -128,5 +128,16 @@ class Feedback:
     def __str__(self):
         return f"Feedback by {self.user.name} for {self.event.name} - Rating: {self.rating}, Comment: {self.comment or 'No comment'}"
 
+venue = Venue("Concert Hall", "123 Main St", 100)
+seat = Seat(1, 1)
+venue.add_seat(seat)
+category = Category("VIP", 100.0)
+event = Event("Concert", datetime(2024, 12, 31, 20, 0), venue)
+ticket = Ticket(event, seat, category)
+user = User("John Doe")
+order = Order(user, [ticket])
 
+print(f"Order Total: {order.calculate_total_price()}")
+payment = Payment(order, order.calculate_total_price())
+payment.process()
 
